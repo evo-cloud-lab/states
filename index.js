@@ -1,7 +1,4 @@
 module.exports = {
-    States:      require('./lib/States'),
-    ConnectorStates: require('./lib/ConnectorStates'),
-    Repository:  require('./lib/Repository'),
-    RepoManager: require('./lib/RepoManager'),
+    States:  require('./lib/States'),
     Program: require('./lib/Program')
 };

@@ -1,6 +1,7 @@
 var Class  = require('js-class'),
     flow   = require('js-flow'),
     assert = require('assert'),
+    debug  = require('debug')('test'),
     tubes  = require('evo-tubes'),
 
     States = require('..').States;
@@ -50,7 +51,7 @@ var Cluster = Class({
     },
 
     send: function (src, msg, dst) {
-        console.log('SEND [%s:%s]: %j', src == this.masterId ? 'M' : src, dst || '<all>', msg);
+        debug('SEND [%s:%s]: %j', src == this.masterId ? 'M' : src, dst || '<all>', msg);
         dst == 'master' && (dst = this.masterId);
         if (dst == null) {
             this.nodes.forEach(function (node, index) {
@@ -62,12 +63,12 @@ var Cluster = Class({
     },
 
     request: function (src, msg, callback) {
-        console.log('REQ [%s]: %j', src == this.masterId ? 'M' : src, msg);
+        debug('REQ [%s]: %j', src == this.masterId ? 'M' : src, msg);
         (function (node) {
             setImmediate(function () {
                 node.clusterRequest(msg.event, msg.data, src, function (err, result) {
-                    err && console.error(err);
-                    !err && result && console.log('RESP: [%s]: %j', src == this.masterId ? 'M' : src, result);
+                    err && debug(err);
+                    !err && result && debug('RESP: [%s]: %j', src == this.masterId ? 'M' : src, result);
                     callback(err, result);
                 });
             });

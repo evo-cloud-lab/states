@@ -25,6 +25,7 @@
     },
     "devDependencies": {
         "evo-tubes": "git://github.com/evo-cloud/tubes",
+        "debug": "0.8.1",
         "mocha": "1.12.0",
         "sandboxed-module": "0.2.1",
         "blanket": "1.1.6"
